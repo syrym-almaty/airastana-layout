@@ -1,0 +1,477 @@
+%% Expanded Detailed Flowchart with Technology Stacks and Agents
+
+flowchart TD
+    %% Input Module
+    subgraph Input_Module[Input Module]
+        direction TB
+        A[Video Input]
+        A1[Video Collection<br/>Sources: YouTube, Lectures, Interviews, Documentaries, Podcasts]
+        A1a[Video Formats<br/>MP4, AVI, MKV, MOV]
+        A1b[Metadata Extraction<br/>Title, Duration, Language]
+        A1 --> A1a & A1b
+        A2[Video Segmentation<br/>Tools: FFmpeg, OpenCV]
+        A2a[Shot Boundary Detection]
+        A2b[Scene Classification]
+        A2c[Keyframe Extraction]
+        A2 --> A2a & A2b & A2c
+        A --> A1 --> A2
+    end
+
+    %% Audio Extraction
+    subgraph Audio_Extraction[Audio Extraction]
+        direction TB
+        B[Extract Audio<br/>Tools: FFmpeg, LibAV]
+        B1[Audio Separation]
+        B1a[Speech-Music Separation]
+        B1b[Speaker Diarization]
+        B1c[Background Noise Isolation]
+        B1 --> B1a & B1b & B1c
+        B2[Format Conversion<br/>Formats: WAV, MP3, FLAC]
+        B2a[Sample Rate Conversion]
+        B2b[Bit Depth Adjustment]
+        B2 --> B2a & B2b
+        A2 --> B --> B1 --> B2
+    end
+
+    %% Audio Pre-processing
+    subgraph Audio_Preprocessing[Audio Pre-processing]
+        direction TB
+        C[Pre-process Audio]
+        C1[Noise Reduction<br/>Libraries: Librosa, Audacity, SoX]
+        C1a[Adaptive Filtering]
+        C1b[Spectral Subtraction]
+        C1c[Statistical Model-Based Methods]
+        C1 --> C1a & C1b & C1c
+        C2[Normalization<br/>Techniques: Peak, RMS, LUFS]
+        C2a[Loudness Normalization]
+        C2b[Dynamic Range Compression]
+        C2 --> C2a & C2b
+        C3[Voice Activity Detection VAD<br/>Tools: WebRTC VAD, PyAudioAnalysis]
+        C3a[Energy-Based VAD]
+        C3b[Machine Learning-Based VAD]
+        C3c[Deep Learning-Based VAD]
+        C3 --> C3a & C3b & C3c
+        C4[Echo Cancellation]
+        C5[Speech Enhancement]
+        C5a[Dereverberation]
+        C5b[Beamforming]
+        C5 --> C5a & C5b
+        B2 --> C --> C1 & C2 & C3 & C4 & C5
+    end
+
+    %% Feature Extraction
+    subgraph Feature_Extraction[Feature Extraction]
+        direction TB
+        FE[Extract Features]
+        FE1[Acoustic Features]
+        FE1a[MFCCs]
+        FE1b[Filter Banks]
+        FE1c[Pitch, Energy]
+        FE1 --> FE1a & FE1b & FE1c
+        FE2[Prosodic Features]
+        FE2a[Intonation]
+        FE2b[Stress]
+        FE2c[Rhythm]
+        FE2 --> FE2a & FE2b & FE2c
+        FE3[Phonetic Features]
+        FE3a[Phoneme Recognition]
+        FE3b[Articulatory Features]
+        FE3 --> FE3a & FE3b
+        C --> FE --> FE1 & FE2 & FE3
+    end
+
+    %% Speech Recognition Module
+    subgraph ASR_Module[Speech Recognition Module]
+        direction TB
+        D[Automatic Speech Recognition]
+        D1[Acoustic Modeling<br/>Frameworks: Kaldi, DeepSpeech, Wav2Vec]
+        D1a[Deep Neural Networks DNNs]
+        D1a1[Feedforward Networks]
+        D1a2[Time-Delay Neural Networks TDNNs]
+        D1a --> D1a1 & D1a2
+        D1b[Convolutional Neural Networks CNNs]
+        D1b1[1D CNNs]
+        D1b2[2D CNNs]
+        D1b --> D1b1 & D1b2
+        D1c[Recurrent Neural Networks RNNs]
+        D1c1[LSTM]
+        D1c2[GRU]
+        D1c3[Bi-directional RNNs]
+        D1c --> D1c1 & D1c2 & D1c3
+        D1d[Transformer Models]
+        D1d1[Self-Attention Mechanisms]
+        D1d2[Conformer Models]
+        D1d --> D1d1 & D1d2
+        D2[Language Modeling<br/>Tools: KenLM, SRILM, GPT Models]
+        D2a[Statistical Language Models]
+        D2a1[Unigram, Bigram, Trigram Models]
+        D2a2[Back-off and Interpolation]
+        D2a --> D2a1 & D2a2
+        D2b[Neural Language Models]
+        D2b1[RNN-based Models]
+        D2b2[Transformer-based Models]
+        D2b --> D2b1 & D2b2
+        D3[ASR Algorithms]
+        D3a[Connectionist Temporal Classification CTC]
+        D3b[Sequence-to-Sequence with Attention]
+        D3c[End-to-End ASR]
+        D3d[Hybrid HMM-DNN Models]
+        D3 --> D3a & D3b & D3c & D3d
+        D4[Decoding Strategies]
+        D4a[Beam Search]
+        D4b[Greedy Decoding]
+        D4c[Language Model Integration]
+        D4 --> D4a & D4b & D4c
+        D5[Error Handling]
+        D5a[Confidence Scoring]
+        D5b[Out-of-Vocabulary Detection]
+        D5 --> D5a & D5b
+        D --> D1 & D2 & D3 & D4 & D5
+        FE --> D
+    end
+
+    %% Machine Translation Module
+    subgraph MT_Module[Machine Translation Module]
+        direction TB
+        E[Machine Translation]
+        E1[Pre-processing]
+        E1a[Tokenization]
+        E1b[Sentence Segmentation]
+        E1c[Normalization]
+        E1d[Part-of-Speech Tagging]
+        E1 --> E1a & E1b & E1c & E1d
+        E2[Neural Machine Translation NMT<br/>Frameworks: OpenNMT, Fairseq, Marian NMT]
+        E2a[Encoder-Decoder Architectures]
+        E2b[Attention Mechanisms]
+        E2c[Transformer Models]
+        E2d[Recurrent Models]
+        E2 --> E2a & E2b & E2c & E2d
+        E3[Transfer Learning]
+        E3a[Fine-tuning Pre-trained Models]
+        E3b[Multilingual Models<br/>mBART, mT5, XLM-R]
+        E3c[Cross-lingual Embeddings]
+        E3 --> E3a & E3b & E3c
+        E4[Post-editing]
+        E4a[Rule-based Corrections]
+        E4b[Grammatical Adjustments]
+        E4c[Style Transfer]
+        E4 --> E4a & E4b & E4c
+        E5[Quality Estimation]
+        E5a[Automated Metrics]
+        E5b[Human Evaluation]
+        E5 --> E5a & E5b
+        D --> E --> E1 & E2 & E3 & E4 & E5
+    end
+
+    %% Post-processing Module
+    subgraph Postprocessing_Module[Post-processing Module]
+        direction TB
+        F[Post-processing]
+        F1[Text Normalization<br/>Libraries: NLTK, SpaCy, Stanford NLP]
+        F1a[Number Conversion]
+        F1b[Date and Time Formatting]
+        F1c[Punctuation Correction]
+        F1 --> F1a & F1b & F1c
+        F2[Error Correction<br/>Tools: LanguageTool, Custom Spell Checker]
+        F2a[Spell Checking]
+        F2b[Grammar Checking]
+        F2c[Contextual Error Detection]
+        F2 --> F2a & F2b & F2c
+        F3[Handling OOV Words]
+        F3a[Subword Units with BPE]
+        F3b[Unsupervised Morphology Learning]
+        F3c[Dictionary Lookup]
+        F3 --> F3a & F3b & F3c
+        F4[Language-Specific Adjustments]
+        F4a[Slang and Colloquialism Handling]
+        F4b[Formal vs Informal Speech]
+        F4c[Idiomatic Expressions]
+        F4 --> F4a & F4b & F4c
+        E --> F --> F1 & F2 & F3 & F4
+    end
+
+    %% Text-to-Speech Optional
+    subgraph TTS_Module[Text-to-Speech Module Optional]
+        direction TB
+        G[Text-to-Speech Synthesis]
+        G1[Pre-processing]
+        G1a[Text Normalization]
+        G1b[Phoneme Conversion]
+        G1c[Prosody Prediction]
+        G1 --> G1a & G1b & G1c
+        G2[TTS Models]
+        G2a[Concatenative Synthesis]
+        G2b[Statistical Parametric Synthesis]
+        G2c[Neural TTS Models<br/>Tacotron 2, WaveNet, FastSpeech]
+        G2 --> G2a & G2b & G2c
+        G3[Voice Cloning]
+        G3a[Speaker Adaptation]
+        G3b[Speaker Embeddings]
+        G3 --> G3a & G3b
+        G4[Speech Enhancement]
+        G4a[Emotion Rendering]
+        G4b[Expressive Speech Synthesis]
+        G4 --> G4a & G4b
+        F --> G --> G1 & G2 & G3 & G4
+    end
+
+    %% Evaluation Module
+    subgraph Evaluation_Module[Evaluation Module]
+        direction TB
+        H[Evaluation]
+        H1[ASR Metrics]
+        H1a[Word Error Rate WER]
+        H1b[Character Error Rate CER]
+        H1c[Sentence Error Rate SER]
+        H1d[Match Error Rate MER]
+        H1 --> H1a & H1b & H1c & H1d
+        H2[MT Metrics]
+        H2a[BLEU Score]
+        H2b[METEOR]
+        H2c[ROUGE Metrics]
+        H2d[TER Translation Edit Rate]
+        H2 --> H2a & H2b & H2c & H2d
+        H3[TTS Metrics]
+        H3a[Mean Opinion Score MOS]
+        H3b[ABX Testing]
+        H3c[Intelligibility Tests]
+        H3 --> H3a & H3b & H3c
+        H4[User Studies]
+        H4a[Surveys]
+        H4b[Focus Groups]
+        H4c[Usability Testing]
+        H4 --> H4a & H4b & H4c
+        D & E & G --> H --> H1 & H2 & H3 & H4
+    end
+
+    %% Data Resources
+    subgraph Data_Resources[Data Resources]
+        direction TB
+        I[Datasets]
+        I1[Existing Datasets]
+        I1a[Common Voice]
+        I1b[OpenSLR]
+        I1c[LibriSpeech]
+        I1d[Local University Corpora]
+        I1e[Multilingual Corpora]
+        I1 --> I1a & I1b & I1c & I1d & I1e
+        I2[Data Collection]
+        I2a[Crowdsourcing Transcriptions<br/>Platforms: Amazon MTurk, Prolific]
+        I2b[Web Scraping]
+        I2c[Partnerships with Media Outlets]
+        I2d[Public Recordings]
+        I2 --> I2a & I2b & I2c & I2d
+        I3[Data Augmentation]
+        I3a[Back-Translation]
+        I3b[Speed Perturbation]
+        I3c[Noise Injection]
+        I3d[SpecAugment]
+        I3 --> I3a & I3b & I3c & I3d
+        I4[Data Annotation]
+        I4a[Transcription]
+        I4b[Translation]
+        I4c[Labeling for Emotion, Speaker ID]
+        I4 --> I4a & I4b & I4c
+        I --> I1 & I2 & I3 & I4
+        I --> D
+        I --> E
+        I --> G
+    end
+
+    %% Technology Stack
+    subgraph Technology_Stack[Technology Stack]
+        direction TB
+        J[Frameworks & Libraries]
+        J1[Programming Languages]
+        J1a[Python]
+        J1b[C++]
+        J1c[Java]
+        J1d[Julia]
+        J1 --> J1a & J1b & J1c & J1d
+        J2[Deep Learning Frameworks]
+        J2a[TensorFlow]
+        J2b[PyTorch]
+        J2c[Keras]
+        J2d[MXNet]
+        J2 --> J2a & J2b & J2c & J2d
+        J3[ASR Tools]
+        J3a[Kaldi]
+        J3b[DeepSpeech]
+        J3c[Espresso]
+        J3d[Wav2Letter++]
+        J3 --> J3a & J3b & J3c & J3d
+        J4[NLP Libraries]
+        J4a[NLTK]
+        J4b[SpaCy]
+        J4c[Hugging Face Transformers]
+        J4d[Stanford CoreNLP]
+        J4 --> J4a & J4b & J4c & J4d
+        J5[Data Handling]
+        J5a[NumPy]
+        J5b[Pandas]
+        J5c[Dask]
+        J5d[Apache Spark]
+        J5 --> J5a & J5b & J5c & J5d
+        J6[Visualization Tools]
+        J6a[Matplotlib]
+        J6b[Seaborn]
+        J6c[TensorBoard]
+        J6d[Plotly]
+        J6 --> J6a & J6b & J6c & J6d
+        J7[Deployment Tools]
+        J7a[Docker]
+        J7b[Kubernetes]
+        J7c[Flask]
+        J7d[FastAPI]
+        J7 --> J7a & J7b & J7c & J7d
+        J8[Version Control]
+        J8a[Git]
+        J8b[GitHub]
+        J8c[GitLab]
+        J8d[Bitbucket]
+        J8 --> J8a & J8b & J8c & J8d
+        J --> J1 & J2 & J3 & J4 & J5 & J6 & J7 & J8
+        J --> D
+        J --> E
+        J --> F
+        J --> G
+    end
+
+    %% Challenges and Solutions
+    subgraph Challenges_Solutions[Challenges & Solutions]
+        direction TB
+        K[Challenges]
+        K1[Low-Resource Language]
+        K1a[Data Scarcity]
+        K1b[Dialect Variations]
+        K1c[Orthographic Complexity]
+        K1d[Limited Pre-trained Models]
+        K2[Technical Challenges]
+        K2a[Real-Time Processing]
+        K2b[Scalability]
+        K2c[Model Interpretability]
+        K2d[Integration Complexity]
+        K3[Ethical and Social Challenges]
+        K3a[Bias in Data]
+        K3b[Privacy Concerns]
+        K3c[Accessibility]
+        K3d[Regulatory Compliance]
+        K --> K1 & K2 & K3
+        Solution1[Solutions]
+        Solution1a[Data Augmentation]
+        Solution1b[Transfer Learning]
+        Solution1c[Dialect Modeling]
+        Solution1d[Orthography Normalization]
+        Solution1e[Model Optimization]
+        Solution1f[Ethical Data Collection]
+        Solution1g[Explainable AI Techniques]
+        Solution1h[Privacy-Preserving Methods]
+        Solution1 --> Solution1a & Solution1b & Solution1c & Solution1d & Solution1e & Solution1f & Solution1g & Solution1h
+        K1a --> Solution1a & Solution1b
+        K1b --> Solution1c
+        K1c --> Solution1d
+        K2a --> Solution1e
+        K3a --> Solution1f & Solution1g
+        K3b --> Solution1h
+        K --> Solution1
+    end
+
+    %% Project Workflow
+    subgraph Project_Workflow[Project Workflow]
+        direction TB
+        L[Development Process]
+        L1[Research & Planning]
+        L1a[Define Objectives]
+        L1b[Literature Review]
+        L1c[Requirement Analysis]
+        L1d[Project Proposal]
+        L1 --> L1a & L1b & L1c & L1d
+        L2[Implementation]
+        L2a[Data Collection & Annotation]
+        L2b[Model Development]
+        L2c[Algorithm Design]
+        L2d[Testing & Validation]
+        L2e[Iteration & Improvement]
+        L2 --> L2a & L2b & L2c & L2d & L2e
+        L3[Deployment]
+        L3a[System Integration]
+        L3b[User Interface Design]
+        L3c[Performance Monitoring]
+        L3d[Maintenance & Support]
+        L3 --> L3a & L3b & L3c & L3d
+        L4[Documentation & Publication]
+        L4a[Dissertation Writing]
+        L4b[Article Publication]
+        L4c[Conference Presentations]
+        L4d[Patent Applications]
+        L4 --> L4a & L4b & L4c & L4d
+        L5[Project Management]
+        L5a[Agile Methodologies]
+        L5b[Task Scheduling]
+        L5c[Resource Allocation]
+        L5d[Risk Management]
+        L5 --> L5a & L5b & L5c & L5d
+        L --> L1 & L2 & L3 & L4 & L5
+    end
+
+    %% Collaboration and Resources
+    subgraph Collaboration_Resources[Collaboration & Resources]
+        direction TB
+        M[Collaboration]
+        M1[Academic Partners]
+        M1a[Universities]
+        M1b[Research Institutes]
+        M1c[Linguistics Departments]
+        M1 --> M1a & M1b & M1c
+        M2[Industry Partners]
+        M2a[Tech Companies]
+        M2b[Startups]
+        M2c[Non-profits]
+        M2 --> M2a & M2b & M2c
+        M3[Open-Source Community]
+        M3a[GitHub Projects]
+        M3b[Community Forums]
+        M3c[Conferences and Workshops]
+        M3 --> M3a & M3b & M3c
+        M4[Government Agencies]
+        M4a[Funding Bodies]
+        M4b[Regulatory Authorities]
+        M4c[Cultural Organizations]
+        M4 --> M4a & M4b & M4c
+        M --> M1 & M2 & M3 & M4
+        N[Resources]
+        N1[Funding]
+        N1a[Grants]
+        N1b[Scholarships]
+        N1c[Industry Sponsorships]
+        N1 --> N1a & N1b & N1c
+        N2[Compute Resources]
+        N2a[Cloud Platforms<br/>AWS, Google Cloud, Azure]
+        N2b[High-Performance Computing HPC Centers]
+        N2c[GPU Clusters]
+        N2 --> N2a & N2b & N2c
+        N3[Data Resources]
+        N3a[Public Datasets]
+        N3b[Private Collections]
+        N3c[Shared Repositories]
+        N3 --> N3a & N3b & N3c
+        N4[Human Resources]
+        N4a[Research Assistants]
+        N4b[Developers]
+        N4c[Linguists]
+        N4d[Project Managers]
+        N4 --> N4a & N4b & N4c & N4d
+        N --> N1 & N2 & N3 & N4
+    end
+
+    %% Connecting Modules
+    H --> L
+    K --> L
+    L --> M
+    L --> N
+    M & N --> P[Final Product<br/>Deployed Translation System]
+    P --> Q[Impact and Future Work]
+    Q1[Improved Accessibility]
+    Q2[Language Preservation]
+    Q3[Future Research Directions]
+    Q --> Q1 & Q2 & Q3

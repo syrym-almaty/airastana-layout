@@ -1,0 +1,49 @@
+flowchart TD
+    subgraph ASR_Module[Speech Recognition Module]
+        direction TB
+        D[Automatic Speech Recognition]
+        D1[Acoustic Modeling<br/>Frameworks: Kaldi, DeepSpeech, Wav2Vec]
+        D1a[Deep Neural Networks DNNs]
+        D1a1[Feedforward Networks]
+        D1a2[Time-Delay Neural Networks TDNNs]
+        D1a --> D1a1 & D1a2
+        D1b[Convolutional Neural Networks CNNs]
+        D1b1[1D CNNs]
+        D1b2[2D CNNs]
+        D1b --> D1b1 & D1b2
+        D1c[Recurrent Neural Networks RNNs]
+        D1c1[LSTM]
+        D1c2[GRU]
+        D1c3[Bi-directional RNNs]
+        D1c --> D1c1 & D1c2 & D1c3
+        D1d[Transformer Models]
+        D1d1[Self-Attention Mechanisms]
+        D1d2[Conformer Models]
+        D1d --> D1d1 & D1d2
+        D2[Language Modeling<br/>Tools: KenLM, SRILM, GPT Models]
+        D2a[Statistical Language Models]
+        D2a1[Unigram, Bigram, Trigram Models]
+        D2a2[Back-off and Interpolation]
+        D2a --> D2a1 & D2a2
+        D2b[Neural Language Models]
+        D2b1[RNN-based Models]
+        D2b2[Transformer-based Models]
+        D2b --> D2b1 & D2b2
+        D3[ASR Algorithms]
+        D3a[Connectionist Temporal Classification CTC]
+        D3b[Sequence-to-Sequence with Attention]
+        D3c[End-to-End ASR]
+        D3d[Hybrid HMM-DNN Models]
+        D3 --> D3a & D3b & D3c & D3d
+        D4[Decoding Strategies]
+        D4a[Beam Search]
+        D4b[Greedy Decoding]
+        D4c[Language Model Integration]
+        D4 --> D4a & D4b & D4c
+        D5[Error Handling]
+        D5a[Confidence Scoring]
+        D5b[Out-of-Vocabulary Detection]
+        D5 --> D5a & D5b
+        D --> D1 & D2 & D3 & D4 & D5
+        FE --> D
+    end
